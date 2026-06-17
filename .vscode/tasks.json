@@ -1,0 +1,46 @@
+{
+    "version": "2.0.0",
+
+    "tasks": [
+        {
+            "label": "Compilar OpenGL",
+
+            "type": "shell",
+
+            "command": "gcc",
+
+            "args": [
+                "main.c",
+
+                "state/scene.c",
+
+                "draw/shapes.c",
+                "draw/sky.c",
+                "draw/house.c",
+                "draw/smoke.c",
+                "draw/tree.c",
+                "draw/person.c",
+
+                "animation/animation.c",
+
+                "input/keyboard.c",
+
+                "-o",
+                "programa.exe",
+
+                "-lfreeglut",
+                "-lopengl32",
+                "-lglu32"
+            ],
+
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ]
+}

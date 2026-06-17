@@ -1,0 +1,34 @@
+[agent]
+expertMode = true
+stack = "BEST_EFFORT_FALLBACK"
+
+[nix]
+channel = "stable-25_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash run.sh"
+
+[workflows.workflow.metadata]
+outputType = "vnc"
+
+[deployment]
+deploymentTarget = "vm"
+run = ["bash", "run.sh"]
+build = ["bash", "-c", "LDFLAGS_CLEAN=$(echo $NIX_LDFLAGS | sed 's/-rpath [^ ]*//g'); gcc dianoite.c -o dianoite $LDFLAGS_CLEAN -lGL -lGLU -lglut -lm"]
